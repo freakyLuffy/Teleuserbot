@@ -7,15 +7,10 @@ from codeforces import codeforces
 from pbwrap import Pastebin
 from config import details
 
-white=[1296026566,867524384,1022865230]
+white=[]
 
-CUSTOM_TEXT={'en':'Speak English!',
-             'pass':'you need to pass the test. leave the group and join again,a test button will appear on your screen. give that test, score well and get passed.',
-             'ask':'Don\'t ask to ask',
-             'pur':'What\'s',
-             'link':'https://t.me/joinchat/VCUDq5aOJsF1WmEK',
-             'pm':'Hello there! Welcome to Hima\'s **PM**.\n Why would I **block** you?\n 1. I would **block** you for sending me a **Hi/Hello** in my PM!\n 2. I would **block** you for not stating the purpose of the PM!\n Before continuing , make sure you have agreed to the above terms:)'
-             }
+CUSTOM_TEXT={
+            }
 
 client = TelegramClient('hima', api_id, api_hash)
 client.start()
@@ -112,7 +107,7 @@ async def unpin(event):
 
 @client.on(events.NewMessage(outgoing=True, pattern="^!paste$"))
 async def paste(event):
-    pb=Pastebin("5PaG-csPUl7H7cgZktaHvULrLUaHMepZ")
+    pb=Pastebin(your_pastebin_developer_api)
     msg=await event.get_reply_message()
     first_name=msg.sender.first_name
     
