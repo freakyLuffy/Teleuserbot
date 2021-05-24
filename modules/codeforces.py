@@ -1,3 +1,6 @@
+from start import client
+import requests
+from telethon import events
 @client.on(events.NewMessage(outgoing=True, pattern="^.f.*"))
 async def cff(event):
     hd=event.raw_text.split()[1]
