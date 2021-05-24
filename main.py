@@ -32,7 +32,7 @@ async def normal_handler(event):
     errors=""
     s=""
     result = subprocess.run(["python",  "./"+code_file], capture_output=True, text=True)
-    f=open("C:\\Users\\Himanshu\\Desktop\\tel.txt",'r')
+    f=open("result.txt",'r')
     print(result.stderr)
     for i in result.stdout:
         s+=i
