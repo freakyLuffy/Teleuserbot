@@ -7,22 +7,39 @@ async def cff(event):
     try:
         response = requests.get(f'https://codeforces.com/api/user.status?handle={hd}&from=1&count=100')
         js=(response.json())
+        #print(js)
         dct={}
+        dct1={}
         target=5
         link='https://codeforces.com/problemset/problem/'
         for i in js['result']:
             if i['verdict']=='OK':
                 try:
-                    dct[str(i['problem']['contestId'])+str(i['problem']['index'])]=[i['problem']['name'],i['problem']['rating'],link+str(i['problem']['contestId'])+'/'+str(i['problem']['index'])]
+                    key=str(i['problem']['contestId'])+str(i['problem']['index'])
+                    dct[key]=[i['problem']['name'],i['problem']['rating'],link+str(i['problem']['contestId'])+'/'+str(i['problem']['index'])]
+                    if key in dct1:
+                        dct1[key]+=1
+                    else:
+                        dct1[key]=1
                 except KeyError:
+                   
+                    if key in dct1:
+                        dct1[key]+=1
+                    else:
+                        dct1[key]=1
+                    dct1[key]=1
                     dct[str(i['problem']['contestId'])+str(i['problem']['index'])]=[i['problem']['name'],'?',link+str(i['problem']['contestId'])+'/'+str(i['problem']['index'])]
-            
-                    
+            else:
+                key=str(i['problem']['contestId'])+str(i['problem']['index'])
+                if key in dct1:
+                    dct1[key]+=1
+                else:
+                    dct1[key]=1
             if len(dct)==target:
                 break
         s=''
         for i in dct:
-            s+=f'[{dct[i][0]}]({dct[i][2]}) '+f',rating=`{dct[i][1]}`\n'
+            s+=f'[{dct[i][0]}]({dct[i][2]}) '+f',rating=`{dct[i][1]}` '+f'Accuracy:`{int((1/dct1[i])*100)}%`\n'
         response=f'User **{hd}**\'s last five successful submissions are:\n{s}'
         await event.edit(response,link_preview=False)
     except KeyError:
