@@ -13,7 +13,7 @@ ___________
 >   * Saving notes
 >   * forwards messages from/to your desired chats
 >   * PM manager 
->   * Some more function to be added:)
+>   * Some more functions to be added:)
 >   
 
 
