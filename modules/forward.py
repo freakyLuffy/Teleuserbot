@@ -1,5 +1,5 @@
 from start import client
-for_lis=[1359393775]
+for_lis=[]
 @client.on(events.NewMessage(outgoing=True, pattern="^fdl$"))
 async def ddd(target):
     message = (await target.get_reply_message())
