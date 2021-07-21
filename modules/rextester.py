@@ -1,4 +1,5 @@
 from start import client
+from telethon import events
 @client.on(events.NewMessage(outgoing=True, pattern="^!b.*"))
 async def convo(event):
     message=(await event.get_reply_message()).message
